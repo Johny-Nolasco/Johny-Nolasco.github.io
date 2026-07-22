@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Johny Nolasco | Software Developer Portfolio</title>
     <style>
-        /* Base Styles - Strict Monochrome & Sharp Design */
+        /* Base Styles - Strict Monochrome, Sharp & Animated */
         :root {
             --bg-main: #ffffff;
             --bg-alt: #f8f9fa; 
@@ -13,11 +13,15 @@
             --text-secondary: #333333; 
             --text-muted: #666666; 
             --accent: #000000; 
-            --transition: all 0.2s ease;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         * {
             box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body { 
@@ -28,6 +32,7 @@
             color: var(--text-secondary); 
             line-height: 1.7;
             font-size: 16px;
+            overflow-x: hidden;
         }
         
         /* Typography */
@@ -38,35 +43,71 @@
             letter-spacing: -0.02em;
         }
 
-        p {
-            margin-bottom: 1.5rem;
-        }
+        p { margin-bottom: 1.5rem; }
         
         strong {
             color: var(--text-primary);
             font-weight: 600;
         }
 
+        /* Initial Load Animations for Hero */
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Moving/Pulsing Dot Animation */
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.4); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(0, 0, 0, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); }
+        }
+
         /* Minimalistic Hero Section */
         header { 
             background: var(--bg-main);
             color: var(--text-primary); 
-            padding: 10rem 1rem 6rem 1rem; 
+            padding: 12rem 1rem 8rem 1rem; 
             text-align: left; 
             max-width: 800px;
             margin: 0 auto;
         }
         header h1 { 
             margin: 0; 
-            font-size: 4rem; 
+            font-size: 4.5rem; 
             line-height: 1;
+            opacity: 0;
+            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
         }
+        
+        .hero-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            opacity: 0;
+            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background-color: #000000;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
         header p { 
-            margin: 1.5rem 0 0; 
+            margin: 0.75rem 0 0; 
             font-size: 1.5rem; 
             font-weight: 300; 
             color: var(--text-muted);
             letter-spacing: -0.01em;
+            opacity: 0;
+            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
         }
 
         /* Main Container */
@@ -74,6 +115,17 @@
             max-width: 800px; 
             margin: 0 auto; 
             padding: 0 1rem 6rem 1rem; 
+        }
+
+        /* Scroll Reveal Utility Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Sections */
@@ -95,6 +147,24 @@
             color: var(--text-muted);
             margin-bottom: 3rem;
             font-weight: 500;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Moving Line Reveal on Heading when Visible */
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 0;
+            height: 2px;
+            background-color: var(--text-primary);
+            transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+        }
+
+        section.visible h2::after {
+            width: 100%;
         }
 
         /* About Section Polish */
@@ -104,12 +174,17 @@
             border-left: 2px solid var(--accent);
             padding-left: 1.5rem;
             margin-top: 2rem;
+            background: #fafafa;
+            padding: 1.5rem;
+            transition: var(--transition);
+        }
+        #about p.seeking:hover {
+            background: #f0f0f0;
+            transform: translateX(8px);
         }
 
         /* Skills Tags */
-        .skills-category {
-            margin-bottom: 2rem;
-        }
+        .skills-category { margin-bottom: 2.5rem; }
         .skills-category h4 {
             font-size: 1.1rem;
             margin-bottom: 1rem;
@@ -120,29 +195,41 @@
             padding: 0; 
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 10px;
         }
         .skills-list li { 
             background: var(--bg-alt); 
             color: var(--text-primary);
-            padding: 0.5rem 1rem; 
+            padding: 0.6rem 1.2rem; 
             border-radius: 0; 
             font-size: 0.9rem; 
             font-weight: 500;
-            border: 1px solid transparent;
+            border: 1px solid #eaeaea;
             transition: var(--transition);
+            cursor: default;
         }
         .skills-list li:hover {
-            border-color: #ddd;
+            border-color: var(--accent);
+            background: var(--bg-main);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.06);
         }
 
         /* Projects & Experience */
-        .item-wrapper { margin-bottom: 3.5rem; }
+        .item-wrapper { 
+            margin-bottom: 3.5rem; 
+            transition: var(--transition);
+        }
         .item-wrapper:last-child { margin-bottom: 0; }
         .item-wrapper h3 { 
             margin: 0 0 0.25rem; 
             font-size: 1.4rem;
             letter-spacing: -0.01em;
+            transition: color 0.2s, transform 0.2s;
+        }
+        .item-wrapper:hover h3 {
+            color: var(--text-muted);
+            transform: translateX(4px);
         }
         .item-meta {
             font-size: 0.95rem;
@@ -163,9 +250,7 @@
             border-bottom: none;
             padding-bottom: 2rem;
         }
-        .contact-info { 
-            text-align: left; 
-        }
+        .contact-info { text-align: left; }
         .contact-info p { 
             font-size: 1.2rem;
             color: var(--text-primary);
@@ -178,14 +263,16 @@
             color: var(--text-muted);
         }
         
-        /* Buttons */
+        /* Buttons with smooth hover morph */
         .button-group {
             display: flex;
             flex-wrap: wrap;
             gap: 15px;
         }
         .btn { 
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             background: #000000; 
             color: #ffffff; 
             text-decoration: none; 
@@ -199,33 +286,51 @@
             border: 2px solid #000000;
             transition: var(--transition);
             cursor: pointer;
-        }
-        .btn:hover { 
-            background: #333333;
-            border-color: #333333;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
         
+        .btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            z-index: -1;
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn:hover::after {
+            transform: scaleY(1);
+        }
+        .btn:hover {
+            color: #000000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
         .btn-outline {
             background: transparent;
             color: #000000;
             border: 2px solid #e0e0e0;
         }
+        .btn-outline::after {
+            background-color: #000000;
+        }
         .btn-outline:hover {
-            background: transparent;
+            color: #ffffff;
             border-color: #000000;
         }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            header {
-                padding: 6rem 1rem 4rem 1rem;
-            }
-            header h1 {
-                font-size: 2.8rem;
-            }
-            section {
-                padding: 3rem 0;
-            }
+            header { padding: 8rem 1rem 4rem 1rem; }
+            header h1 { font-size: 3rem; }
+            section { padding: 3rem 0; }
         }
     </style>
 </head>
@@ -233,20 +338,23 @@
 
     <header>
         <h1>Johny Nolasco</h1>
+        <div class="hero-status">
+            <span class="status-dot"></span> Open to Roles & Internships
+        </div>
         <p>Computer Science Student & Software Developer</p>
     </header>
 
     <div class="container">
         
         <!-- About Section -->
-        <section id="about">
+        <section id="about" class="fade-in">
             <h2>About</h2>
             <p>I am a bilingual (English/Spanish) Brooklyn-based Computer Science major at the New York Institute of Technology. My technical focus lies in cross-platform application architecture and real-time 3D environments. I enjoy the entire development lifecycle, from configuring Docker and Flutter environments to designing low-latency native applications. Beyond the code editor, I am a musician whose main instrument is the piano, though I also play guitar and bass. Whether I am building software or teaching it, I thrive on breaking down complex systems.</p>
             <p class="seeking">Currently seeking part-time software development opportunities during the school year and a Software Engineering Internship for Summer 2027.</p>
         </section>
 
         <!-- Education Section -->
-        <section id="education">
+        <section id="education" class="fade-in">
             <h2>Education</h2>
             <div class="item-wrapper">
                 <h3>New York Institute of Technology</h3>
@@ -255,7 +363,7 @@
         </section>
 
         <!-- Skills Section -->
-        <section id="skills">
+        <section id="skills" class="fade-in">
             <h2>Technical Arsenal</h2>
             
             <div class="skills-category">
@@ -300,7 +408,7 @@
         </section>
 
         <!-- Certifications Section -->
-        <section id="certifications">
+        <section id="certifications" class="fade-in">
             <h2>Certifications</h2>
             <ul class="skills-list">
                 <li>IT Fundamentals Pro Performance-Based Certification (TestOut)</li>
@@ -310,7 +418,7 @@
         </section>
 
         <!-- Experience Section -->
-        <section id="experience">
+        <section id="experience" class="fade-in">
             <h2>Experience</h2>
             
             <div class="item-wrapper">
@@ -356,7 +464,7 @@
         </section>
 
         <!-- Projects Section -->
-        <section id="projects">
+        <section id="projects" class="fade-in">
             <h2>Featured Projects</h2>
             
             <div class="item-wrapper">
@@ -374,7 +482,7 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="contact-info">
+        <section id="contact" class="fade-in contact-info">
             <h2>Connect</h2>
             <p>I am always open to discussing new opportunities, collaborations, or just connecting. Feel free to reach out.</p>
             <div class="contact-details">
@@ -388,5 +496,27 @@
 
     </div>
 
+    <!-- Intersection Observer Script for Scroll Animations -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(el => observer.observe(el));
+        });
+    </script>
 </body>
 </html>
