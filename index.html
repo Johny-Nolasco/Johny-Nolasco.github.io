@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Johny Nolasco | Software Developer Portfolio</title>
+    <style>
+        /* Base Styles - Strict Monochrome & Sharp Design */
+        :root {
+            --bg-main: #ffffff;
+            --bg-alt: #f8f9fa; 
+            --text-primary: #000000; 
+            --text-secondary: #333333; 
+            --text-muted: #666666; 
+            --accent: #000000; 
+            --transition: all 0.2s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"; 
+            margin: 0; 
+            padding: 0; 
+            background-color: var(--bg-main); 
+            color: var(--text-secondary); 
+            line-height: 1.7;
+            font-size: 16px;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4 {
+            color: var(--text-primary);
+            font-weight: 700;
+            margin-top: 0;
+            letter-spacing: -0.02em;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+        
+        strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Minimalistic Hero Section */
+        header { 
+            background: var(--bg-main);
+            color: var(--text-primary); 
+            padding: 10rem 1rem 6rem 1rem; 
+            text-align: left; 
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        header h1 { 
+            margin: 0; 
+            font-size: 4rem; 
+            line-height: 1;
+        }
+        header p { 
+            margin: 1.5rem 0 0; 
+            font-size: 1.5rem; 
+            font-weight: 300; 
+            color: var(--text-muted);
+            letter-spacing: -0.01em;
+        }
+
+        /* Main Container */
+        .container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 0 1rem 6rem 1rem; 
+        }
+
+        /* Sections */
+        section { 
+            background: transparent; 
+            padding: 4rem 0; 
+            border-top: 1px solid #eaeaea; 
+        }
+        
+        section:first-of-type {
+            border-top: none; 
+            padding-top: 0;
+        }
+
+        h2 { 
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            font-weight: 500;
+        }
+
+        /* About Section Polish */
+        #about p.seeking {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            border-left: 2px solid var(--accent);
+            padding-left: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        /* Skills Tags */
+        .skills-category {
+            margin-bottom: 2rem;
+        }
+        .skills-category h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+        .skills-list { 
+            list-style: none; 
+            padding: 0; 
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .skills-list li { 
+            background: var(--bg-alt); 
+            color: var(--text-primary);
+            padding: 0.5rem 1rem; 
+            border-radius: 0; 
+            font-size: 0.9rem; 
+            font-weight: 500;
+            border: 1px solid transparent;
+            transition: var(--transition);
+        }
+        .skills-list li:hover {
+            border-color: #ddd;
+        }
+
+        /* Projects & Experience */
+        .item-wrapper { margin-bottom: 3.5rem; }
+        .item-wrapper:last-child { margin-bottom: 0; }
+        .item-wrapper h3 { 
+            margin: 0 0 0.25rem; 
+            font-size: 1.4rem;
+            letter-spacing: -0.01em;
+        }
+        .item-meta {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+            font-weight: 400;
+        }
+        .item-wrapper ul {
+            padding-left: 1.2rem;
+            color: var(--text-secondary);
+        }
+        .item-wrapper ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            border-bottom: none;
+            padding-bottom: 2rem;
+        }
+        .contact-info { 
+            text-align: left; 
+        }
+        .contact-info p { 
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem; 
+            max-width: 600px;
+        }
+        .contact-details {
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+        
+        /* Buttons */
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .btn { 
+            display: inline-block;
+            background: #000000; 
+            color: #ffffff; 
+            text-decoration: none; 
+            padding: 1rem 2rem;
+            margin: 0; 
+            border-radius: 0; 
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border: 2px solid #000000;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .btn:hover { 
+            background: #333333;
+            border-color: #333333;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: #000000;
+            border: 2px solid #e0e0e0;
+        }
+        .btn-outline:hover {
+            background: transparent;
+            border-color: #000000;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            header {
+                padding: 6rem 1rem 4rem 1rem;
+            }
+            header h1 {
+                font-size: 2.8rem;
+            }
+            section {
+                padding: 3rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Johny Nolasco</h1>
+        <p>Computer Science Student & Software Developer</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- About Section -->
+        <section id="about">
+            <h2>About</h2>
+            <p>I am a bilingual (English/Spanish) Brooklyn-based Computer Science major at the New York Institute of Technology. My technical focus lies in cross-platform application architecture and real-time 3D environments. I enjoy the entire development lifecycle, from configuring Docker and Flutter environments to designing low-latency native applications. Beyond the code editor, I am a musician whose main instrument is the piano, though I also play guitar and bass. Whether I am building software or teaching it, I thrive on breaking down complex systems.</p>
+            <p class="seeking">Currently seeking part-time software development opportunities during the school year and a Software Engineering Internship for Summer 2027.</p>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education">
+            <h2>Education</h2>
+            <div class="item-wrapper">
+                <h3>New York Institute of Technology</h3>
+                <div class="item-meta">Bachelor of Science in Computer Science | Expected Graduation: May 2028</div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2>Technical Arsenal</h2>
+            
+            <div class="skills-category">
+                <h4>Languages</h4>
+                <ul class="skills-list">
+                    <li>Java</li>
+                    <li>Python</li>
+                    <li>C++</li>
+                    <li>SQL</li>
+                    <li>Lua</li>
+                    <li>Dart</li>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                </ul>
+            </div>
+
+            <div class="skills-category">
+                <h4>Tools & IDEs</h4>
+                <ul class="skills-list">
+                    <li>VS Code</li>
+                    <li>IntelliJ IDEA</li>
+                    <li>Firebase Studio</li>
+                    <li>Docker</li>
+                    <li>Unreal Engine 4 & 5</li>
+                    <li>Logic Circuit Simulator Pro</li>
+                    <li>Flutter</li>
+                    <li>macOS Development</li>
+                </ul>
+            </div>
+
+            <div class="skills-category">
+                <h4>Methodologies & Concepts</h4>
+                <ul class="skills-list">
+                    <li>Low-Latency System Design</li>
+                    <li>Audio Processing</li>
+                    <li>Technical Documentation</li>
+                    <li>Curriculum Development</li>
+                    <li>Git / Version Control</li>
+                    <li>Agile / SDLC</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications">
+            <h2>Certifications</h2>
+            <ul class="skills-list">
+                <li>IT Fundamentals Pro Performance-Based Certification (TestOut)</li>
+                <li>CCNA: Introduction to Networks (Cisco)</li>
+                <li>IC3 Digital Literacy GS5 Certification</li>
+            </ul>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience">
+            <h2>Experience</h2>
+            
+            <div class="item-wrapper">
+                <h3>Online Computer Science Instructor</h3>
+                <div class="item-meta">Coding4Youth Inc | Remote | March 2026 – Present</div>
+                <ul>
+                    <li>Teach beginner-level courses in Roblox Studio (Lua scripting), Unreal Engine 5, Java, Python, and Scratch to students in a fully remote, online format.</li>
+                    <li>Design and deliver lesson plans covering programming fundamentals, game development concepts, and 3D environment design.</li>
+                    <li>Assess student progress and provide individualized feedback to support skill development across varying experience levels.</li>
+                </ul>
+            </div>
+
+            <div class="item-wrapper">
+                <h3>ESL Instructor</h3>
+                <div class="item-meta">Community Volunteer | Brooklyn, NY | October 2025 – May 2026</div>
+                <ul>
+                    <li>Taught English language skills to a diverse group of learners ranging from young children to adults in a community church setting.</li>
+                    <li>Adapted lesson plans and communication style to meet varying ages, learning levels, and language backgrounds in a bilingual (English/Spanish) environment.</li>
+                    <li>Collaborated with a co-teacher to deliver engaging, well-rounded lessons for diverse learners.</li>
+                </ul>
+            </div>
+
+            <div class="item-wrapper">
+                <h3>Junior Coder</h3>
+                <div class="item-meta">Credit Suisse (UBS) | New York, NY | October 2022 – August 2024</div>
+                <ul>
+                    <li>Leveraged Java and internal database packages to automate transfer of database reports across systems, improving data pipeline reliability.</li>
+                    <li>Maintained and updated control files to reflect new processing and threshold requirements, ensuring accurate data governance.</li>
+                    <li>Developed and customized SQL scripts to perform file date regressions and validate data integrity across multiple environments.</li>
+                    <li>Researched and evaluated emerging technologies to support team innovation and broaden technical knowledge.</li>
+                </ul>
+            </div>
+
+            <div class="item-wrapper">
+                <h3>Career Development Intern</h3>
+                <div class="item-meta">CareerWise NY | New York, NY | July 2022 – August 2022</div>
+                <ul>
+                    <li>Built proficiency in professional office tools and strengthened both technical and interpersonal workplace skills.</li>
+                    <li>Collaborated with peers and industry mentors to develop a foundation for career readiness.</li>
+                </ul>
+            </div>
+            
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2>Featured Projects</h2>
+            
+            <div class="item-wrapper">
+                <h3>Dubble</h3>
+                <div class="item-meta">Real-Time Audio Translation Application</div>
+                <p>Authored the project specifications and core architecture for a local, real-time audio translation application designed to run natively on macOS. The project prioritized optimizing processing speed to ensure zero-friction language translation.</p>
+            </div>
+
+            <div class="item-wrapper">
+                <h3>Cross-Platform Mobile Environments</h3>
+                <div class="item-meta">Flutter & System Architecture</div>
+                <p>Engineered reliable cross-platform development workflows on macOS using Flutter. Successfully diagnosed system doctor logs to resolve deep-level software installation hurdles, ensuring a stable environment for continuous deployment.</p>
+            </div>
+            
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-info">
+            <h2>Connect</h2>
+            <p>I am always open to discussing new opportunities, collaborations, or just connecting. Feel free to reach out.</p>
+            <div class="contact-details">
+                Brooklyn, NY
+            </div>
+            <div class="button-group">
+                <a href="https://LinkedIn.com/in/Johny-Nolasco" target="_blank" class="btn">LinkedIn</a>
+                <a href="https://Credly.com/users/Johny-Nolasco" target="_blank" class="btn btn-outline">Credly</a>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
